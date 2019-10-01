@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'pmd'
+}
+
+group 'com.epam'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.11
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java"]
+        }
+        resources {
+            srcDirs = ["src/main/resources"]
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'org.testng', name: 'testng', version: '7.0.0'
+}
+
+checkstyleMain.dependsOn(testClasses)
+checkstyleTest.dependsOn(testClasses)
+pmdMain.dependsOn(testClasses)
+test.dependsOn(pmdMain, checkstyleMain, checkstyleTest)
+
+checkstyle {
+    toolVersion '7.8.1'
+    configFile file("src/main/resources/checkstyle.xml")
+}
+
+pmd {
+    toolVersion = '6.7.0'
+    ignoreFailures = false
+    ruleSetFiles = files("src/main/resources/pmd.xml")
+}
+
+
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
