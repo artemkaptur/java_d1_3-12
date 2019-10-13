@@ -3,7 +3,6 @@ target/
 test-output/
 
 #sikuli libs and screenshots
-screenshots/
 libs/
 
 #log files
