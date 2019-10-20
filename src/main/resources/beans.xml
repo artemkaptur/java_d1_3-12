@@ -26,6 +26,15 @@
     <bean id="seniorSalary" class="com.epam.springcoreintro.task1.model.Salary">
         <property name="salarySize" value="3000"/>
     </bean>
+    <bean id="tooSmallSalary" class="com.epam.springcoreintro.task1.model.Salary">
+        <property name="salarySize" value="250"/>
+    </bean>
+    <bean id="tooBigSalary" class="com.epam.springcoreintro.task1.model.Salary">
+        <property name="salarySize" value="7000"/>
+    </bean>
+    <bean id="salaryWithNull" class="com.epam.springcoreintro.task1.model.Salary">
+        <property name="salarySize" value="#{ null }"/>
+    </bean>
 
     <bean id="junDev" class="com.epam.springcoreintro.task1.model.Position">
         <constructor-arg value="0"/>
@@ -57,6 +66,12 @@
         <constructor-arg value="JUNIOR"/>
         <constructor-arg ref="junSalary"/>
     </bean>
+    <bean id="positionWithInvalidData" class="com.epam.springcoreintro.task1.model.Position">
+        <constructor-arg value="#{ null }"/>
+        <constructor-arg value="Too long title for our constraint"/>
+        <constructor-arg value="JUNIOR"/>
+        <constructor-arg ref="junSalary"/>
+    </bean>
 
     <bean id="john" class="com.epam.springcoreintro.task1.model.Employee">
         <constructor-arg value="John"/>
@@ -77,6 +92,9 @@
     <bean id="jane" class="com.epam.springcoreintro.task1.model.Employee">
         <constructor-arg value="Jane"/>
         <property name="workExperienceInYears" value="8"/>
+    </bean>
+    <bean id="employeeWithNullName" class="com.epam.springcoreintro.task1.model.Employee">
+        <constructor-arg value="#{ null }"/>
     </bean>
 
 </beans>

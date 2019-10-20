@@ -1,4 +1,4 @@
-package com.epam.springcoreintro.task1.service.impl;
+package com.epam.springcoreintro.task3.service.impl;
 
 import com.epam.springcoreintro.task1.model.Employee;
 import com.epam.springcoreintro.task1.model.Position;
@@ -22,7 +22,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void hire(Employee employee, Position position) {
         employee.setPosition(position);
         employee.setSalary(position.getStarterSalary());
-        new PositionServiceImpl().deletePosition(position);
     }
 
     @Override

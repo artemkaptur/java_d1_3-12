@@ -1,4 +1,4 @@
-package com.epam.springcoreintro.task1.model;
+package com.epam.springcoreintro.task3.model;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -10,7 +10,7 @@ public class Salary {
     @Min(300)
     @Max(6000)
     @NotNull(message = "Salary size should be assigned")
-    private Double salarySize;
+    private double salarySize;
 
     public Salary(double salarySize) {
         this.salarySize = salarySize;
@@ -23,7 +23,7 @@ public class Salary {
         return salarySize;
     }
 
-    public void setSalarySize(Double salarySize) {
+    public void setSalarySize(int salarySize) {
         this.salarySize = salarySize;
     }
 

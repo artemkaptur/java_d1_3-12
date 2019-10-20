@@ -1,9 +1,10 @@
 package com.epam.springcoreintro.model;
 
 import com.epam.springcoreintro.task1.model.Position;
-import com.epam.springcoreintro.task1.model.Salary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,7 +21,8 @@ public class PositionTest {
 
     @Test
     public void positionWithInvalidDataTest() {
-        Position position = new Position(null, "Too long title for our constraint", "Junior", new Salary(700));
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        Position position = (Position) context.getBean("positionWithInvalidData");
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();

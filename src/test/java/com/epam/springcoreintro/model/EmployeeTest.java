@@ -3,6 +3,8 @@ package com.epam.springcoreintro.model;
 import com.epam.springcoreintro.task1.model.Employee;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,7 +20,8 @@ public class EmployeeTest {
 
     @Test
     public void employeeWithNoValuesTest() {
-        Employee employee = new Employee(null);
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        Employee employee = (Employee) context.getBean("employeeWithNullName");
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();

@@ -3,6 +3,8 @@ package com.epam.springcoreintro.model;
 import com.epam.springcoreintro.task1.model.Salary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,7 +20,8 @@ public class SalaryTest {
 
     @Test
     public void salaryWithTooSmallValueTest() {
-        Salary salary = new Salary(250);
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        Salary salary = (Salary) context.getBean("tooSmallSalary");
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
@@ -32,7 +35,8 @@ public class SalaryTest {
 
     @Test
     public void salaryWithTooBigValueTest() {
-        Salary salary = new Salary(7000);
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        Salary salary = (Salary) context.getBean("tooBigSalary");
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
@@ -46,7 +50,8 @@ public class SalaryTest {
 
     @Test
     public void salaryWithNoValueTest() {
-        Salary salary = new Salary();
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        Salary salary = (Salary) context.getBean("salaryWithNull");
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
