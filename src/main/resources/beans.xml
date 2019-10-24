@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="positionService" class="com.epam.springcoreintro.task1.service.impl.PositionServiceImpl"
+          autowire="byName">
+    </bean>
+    <bean id="employeeService" class="com.epam.springcoreintro.task1.service.impl.EmployeeServiceImpl"
+          autowire="byType">
+    </bean>
+    <bean id="salaryService" class="com.epam.springcoreintro.task1.service.impl.SalaryServiceImpl"
+          autowire="constructor">
+        <property name="course" value="2.04"/>
+        <property name="inflation" value="4.3"/>
+        <property name="yearlySalaryCoefficient" value="1.4"/>
+    </bean>
+
+    <bean id="junSalary" class="com.epam.springcoreintro.task1.model.Salary">
+        <property name="salarySize" value="600"/>
+    </bean>
+    <bean id="midSalary" class="com.epam.springcoreintro.task1.model.Salary">
+        <property name="salarySize" value="1500"/>
+    </bean>
+    <bean id="seniorSalary" class="com.epam.springcoreintro.task1.model.Salary">
+        <property name="salarySize" value="3000"/>
+    </bean>
+    <bean id="tooSmallSalary" class="com.epam.springcoreintro.task1.model.Salary">
+        <property name="salarySize" value="250"/>
+    </bean>
+    <bean id="tooBigSalary" class="com.epam.springcoreintro.task1.model.Salary">
+        <property name="salarySize" value="7000"/>
+    </bean>
+    <bean id="salaryWithNull" class="com.epam.springcoreintro.task1.model.Salary">
+        <property name="salarySize" value="#{ null }"/>
+    </bean>
+
+    <bean id="junDev" class="com.epam.springcoreintro.task1.model.Position">
+        <constructor-arg value="0"/>
+        <constructor-arg value="Developer"/>
+        <constructor-arg value="JUNIOR"/>
+        <constructor-arg ref="junSalary"/>
+    </bean>
+    <bean id="midQa" class="com.epam.springcoreintro.task1.model.Position">
+        <constructor-arg value="1"/>
+        <constructor-arg value="Qa"/>
+        <constructor-arg value="MIDDLE"/>
+        <constructor-arg ref="midSalary"/>
+    </bean>
+    <bean id="pm" class="com.epam.springcoreintro.task1.model.Position">
+        <constructor-arg value="2"/>
+        <constructor-arg value="PM"/>
+        <constructor-arg value="SENIOR"/>
+        <constructor-arg ref="seniorSalary"/>
+    </bean>
+    <bean id="midDev" class="com.epam.springcoreintro.task1.model.Position">
+        <constructor-arg value="3"/>
+        <constructor-arg value="Developer"/>
+        <constructor-arg value="MIDDLE"/>
+        <constructor-arg ref="midSalary"/>
+    </bean>
+    <bean id="junDevOps" class="com.epam.springcoreintro.task1.model.Position">
+        <constructor-arg value="4"/>
+        <constructor-arg value="DevOps"/>
+        <constructor-arg value="JUNIOR"/>
+        <constructor-arg ref="junSalary"/>
+    </bean>
+    <bean id="positionWithInvalidData" class="com.epam.springcoreintro.task1.model.Position">
+        <constructor-arg value="#{ null }"/>
+        <constructor-arg value="Too long title for our constraint"/>
+        <constructor-arg value="JUNIOR"/>
+        <constructor-arg ref="junSalary"/>
+    </bean>
+
+    <bean id="john" class="com.epam.springcoreintro.task1.model.Employee">
+        <constructor-arg value="John"/>
+        <property name="workExperienceInYears" value="5"/>
+    </bean>
+    <bean id="bill" class="com.epam.springcoreintro.task1.model.Employee">
+        <constructor-arg value="Bill"/>
+        <property name="workExperienceInYears" value="2"/>
+    </bean>
+    <bean id="kate" class="com.epam.springcoreintro.task1.model.Employee">
+        <constructor-arg value="Kate"/>
+        <property name="workExperienceInYears" value="1"/>
+    </bean>
+    <bean id="tom" class="com.epam.springcoreintro.task1.model.Employee">
+        <constructor-arg value="Tom"/>
+        <property name="workExperienceInYears" value="15"/>
+    </bean>
+    <bean id="jane" class="com.epam.springcoreintro.task1.model.Employee">
+        <constructor-arg value="Jane"/>
+        <property name="workExperienceInYears" value="8"/>
+    </bean>
+    <bean id="employeeWithNullName" class="com.epam.springcoreintro.task1.model.Employee">
+        <constructor-arg value="#{ null }"/>
+    </bean>
+
+</beans>
