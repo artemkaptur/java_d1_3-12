@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="a" class="com.epam.springcorebasics.task1.A">
+        <property name="id" value="88"/>
+        <property name="title" value="Valera"/>
+    </bean>
+
+    <bean id="b" class="com.epam.springcorebasics.task1.B">
+        <constructor-arg ref="a"/>
+    </bean>
+
+    <bean id="c" class="com.epam.springcorebasics.task1.C" init-method="initIt">
+        <lookup-method name="createD" bean="d"/>
+    </bean>
+
+    <bean id="d" class="com.epam.springcorebasics.task1.D" scope="prototype">
+        <property name="id" value="8888"/>
+    </bean>
+
+    <bean id="e" class="com.epam.springcorebasics.task1.E">
+        <replaced-method name="printSomething" replacer="replacer"/>
+    </bean>
+
+    <bean id="replacer" class="com.epam.springcorebasics.task1.MethodReplacerForE"/>
+
+    <bean id="f" class="com.epam.springcorebasics.task1.F"/>
+
+</beans>
